@@ -6,6 +6,11 @@
 #include "GameFramework/PlayerController.h"
 #include "DF_PlayerController.generated.h"
 
+class ADF_Character;
+class UInputMappingContext;
+class UInputAction;
+class UEnhancedInputComponent;
+
 /**
  * 
  */
@@ -13,5 +18,19 @@ UCLASS()
 class DWGFINAL_API ADF_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputMappingContext> InputMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputAction> MoveAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputAction> JumpAction;
+
+public:
+	void BindInput(UEnhancedInputComponent* InputComp, ADF_Character* TestCharacter);
 };
