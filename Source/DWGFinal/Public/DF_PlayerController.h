@@ -6,7 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "DF_PlayerController.generated.h"
 
-class ADF_Character;
+class ADF_PlayerCharacter;
 class UInputMappingContext;
 class UInputAction;
 class UEnhancedInputComponent;
@@ -32,5 +32,5 @@ class DWGFINAL_API ADF_PlayerController : public APlayerController
 	TObjectPtr<UInputAction> JumpAction;
 
 public:
-	void BindInput(UEnhancedInputComponent* InputComp, ADF_Character* TestCharacter);
+	void BindInput(UEnhancedInputComponent* InputComp, ADF_PlayerCharacter* TestCharacter);
 };

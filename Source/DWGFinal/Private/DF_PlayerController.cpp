@@ -5,15 +5,15 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputMappingContext.h"
-#include "DWGFinal/Public/DF_Character.h"
+#include "DWGFinal/Public/DF_PlayerCharacter.h"
 
 
 
-void ADF_PlayerController::BindInput(UEnhancedInputComponent* InputComp, ADF_Character* TestCharacter)
+void ADF_PlayerController::BindInput(UEnhancedInputComponent* InputComp, ADF_PlayerCharacter* TestCharacter)
 {
-	InputComp->BindAction(MoveAction, ETriggerEvent::Triggered, TestCharacter, &ADF_Character::MoveCharacterWithInput);
-	InputComp->BindAction(LookAction, ETriggerEvent::Triggered, TestCharacter, &ADF_Character::LookInput);
-	InputComp->BindAction(JumpAction, ETriggerEvent::Triggered, TestCharacter, &ADF_Character::JumpInput);
+	InputComp->BindAction(MoveAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::MoveCharacterWithInput);
+	InputComp->BindAction(LookAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::LookInput);
+	InputComp->BindAction(JumpAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::JumpInput);
 
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
