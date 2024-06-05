@@ -62,3 +62,9 @@ void ADF_PlayerCharacter::JumpInput()
 {
 	ACharacter::Jump();
 }
+
+FVector ADF_PlayerCharacter::GetDesiredVelocity()
+{
+	return DesiredVelocity;
+}
+

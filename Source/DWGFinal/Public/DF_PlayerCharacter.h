@@ -24,15 +24,18 @@ class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCameraComponent> FollowCamera;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	FVector DesiredVelocity;
 
 public:
 	ADF_PlayerCharacter();
+
 	void MoveCharacterWithInput(const FInputActionValue& InputValue);
 	void StopMoveInput(const FInputActionValue& InputValue);
 	void LookInput(const FInputActionValue& InputValue);
 	void JumpInput();
+	FVector GetDesiredVelocity();
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };
