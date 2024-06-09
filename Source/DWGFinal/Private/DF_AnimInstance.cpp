@@ -4,13 +4,18 @@
 #include "DF_AnimInstance.h"
 #include "DWGFinal/Public/DF_PlayerCharacter.h"
 
-FVector UDF_AnimInstance::GetDesiredVelocity(const ADF_PlayerCharacter& Instance)
+
+void UDF_AnimInstance::NativeBeginPlay()
 {
-	return Velocity = Instance.DesiredVelocity;
+	Super::NativeBeginPlay();
+	OwningCharacter = Cast<ADF_PlayerCharacter>(GetOwningActor());
 }
 
 void UDF_AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
-	GetDesiredVelocity();
-	DesiredVelocity = Velocity;
+	if (IsValid(OwningCharacter))
+	{
+		DesiredVelocity = OwningCharacter->GetDesiredVelocity();
+		CurrentVelocity = FMath::VInterpTo(CurrentVelocity, DesiredVelocity, DeltaSeconds, VelocityInterpSpeed); //Lerp
+	}
 }

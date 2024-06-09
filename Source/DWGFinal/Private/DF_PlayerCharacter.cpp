@@ -36,10 +36,10 @@ void ADF_PlayerCharacter::MoveCharacterWithInput(const FInputActionValue& InputV
 {
 	const FVector2D InputVector = InputValue.Get<FVector2D>();
 
-	FQuat ControlRotation2D = FRotator(0, GetControlRotation().Yaw, 0).Quaternion();
-	FVector Y = ControlRotation2D.GetForwardVector() + InputVector.Y;
-	FVector X = ControlRotation2D.GetRightVector() + InputVector.X;
-	FVector Normalized = (X + Y).GetSafeNormal();
+	const FQuat ControlRotation2D = FRotator(0, GetControlRotation().Yaw, 0).Quaternion();
+	const FVector Y = ControlRotation2D.GetForwardVector() * InputVector.Y;
+	const FVector X = ControlRotation2D.GetRightVector() * InputVector.X;
+	const FVector Normalized = (X + Y).GetSafeNormal();
 
 	DesiredVelocity = FVector(GetActorRightVector().Dot(Normalized), GetActorForwardVector().Dot(Normalized), 0);
 }
@@ -51,8 +51,9 @@ void ADF_PlayerCharacter::StopMoveInput(const FInputActionValue& InputValue)
 
 void ADF_PlayerCharacter::LookInput(const FInputActionValue& InputValue)
 {
-	FVector2D InputVector = InputValue.Get<FVector2D>();
-	if (IsValid(Controller)) {
+	const FVector2D InputVector = InputValue.Get<FVector2D>();
+	if (IsValid(Controller))
+	{
 		AddControllerYawInput(InputVector.X);
 		AddControllerPitchInput(InputVector.Y);
 	}

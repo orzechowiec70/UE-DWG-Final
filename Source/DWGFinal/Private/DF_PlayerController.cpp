@@ -12,6 +12,7 @@
 void ADF_PlayerController::BindInput(UEnhancedInputComponent* InputComp, ADF_PlayerCharacter* TestCharacter)
 {
 	InputComp->BindAction(MoveAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::MoveCharacterWithInput);
+	InputComp->BindAction(MoveAction, ETriggerEvent::Completed, TestCharacter, &ADF_PlayerCharacter::StopMoveInput);
 	InputComp->BindAction(LookAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::LookInput);
 	InputComp->BindAction(JumpAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::JumpInput);
 

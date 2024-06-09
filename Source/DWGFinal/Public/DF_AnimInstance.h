@@ -19,11 +19,16 @@ class DWGFINAL_API UDF_AnimInstance : public UAnimInstance
 	FVector DesiredVelocity;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	FVector Velocity;
+	FVector CurrentVelocity;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<ADF_PlayerCharacter> OwningCharacter;
+
+	UPROPERTY(EditDefaultsOnly)
+	float VelocityInterpSpeed = 10;
 
 protected:
+	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 
-public:
-	FVector GetDesiredVelocity(const ADF_PlayerCharacter& Instance);
 };
