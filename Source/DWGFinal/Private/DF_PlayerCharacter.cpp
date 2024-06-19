@@ -62,6 +62,16 @@ void ADF_PlayerCharacter::LookInput(const FInputActionValue& InputValue)
 void ADF_PlayerCharacter::JumpInput()
 {
 	ACharacter::Jump();
+	/*
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && JumpMontage)
+	{
+		if (!AnimInstance->Montage_IsPlaying(JumpMontage))
+		{
+			AnimInstance->Montage_Play(JumpMontage);
+		}
+	}
+	*/
 }
 
 FVector ADF_PlayerCharacter::GetDesiredVelocity()

@@ -10,6 +10,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
+class UAnimMontage;
 /**
  * 
  */
@@ -26,6 +27,9 @@ class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	FVector DesiredVelocity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UAnimMontage> JumpMontage;
 
 public:
 	ADF_PlayerCharacter();
