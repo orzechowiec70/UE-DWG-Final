@@ -27,7 +27,10 @@ class DWGFINAL_API UDF_PlayerAnimInstance : public UDF_AnimInstance
 	float VelocityInterpSpeed = 10;
 
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	bool bIsJumping = true;
+	bool bIsJumping = false;
+
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	bool bIsGrounded = true;
 
 protected:
 	virtual void NativeBeginPlay() override;

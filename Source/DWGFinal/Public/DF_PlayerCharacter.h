@@ -30,6 +30,7 @@ class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UAnimMontage> JumpMontage;
+	
 
 public:
 	ADF_PlayerCharacter();
@@ -38,7 +39,13 @@ public:
 	void StopMoveInput(const FInputActionValue& InputValue);
 	void LookInput(const FInputActionValue& InputValue);
 	void JumpInput();
+	void StopJumpInput();
 	FVector GetDesiredVelocity();
+	bool IsJumping() const;
+	bool IsGrounded() const;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	bool bIsJumping = false;
 };

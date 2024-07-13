@@ -5,6 +5,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "DWGFinal/Public/DF_PlayerController.h"
 
@@ -62,6 +63,11 @@ void ADF_PlayerCharacter::LookInput(const FInputActionValue& InputValue)
 void ADF_PlayerCharacter::JumpInput()
 {
 	ACharacter::Jump();
+	//zalogowaæ velocity %s GetVelocity().ToString()
+
+	bIsJumping = true;
+
+
 	/*
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance && JumpMontage)
@@ -74,8 +80,23 @@ void ADF_PlayerCharacter::JumpInput()
 	*/
 }
 
+void ADF_PlayerCharacter::StopJumpInput()
+{
+	bIsJumping = false;
+}
+
 FVector ADF_PlayerCharacter::GetDesiredVelocity()
 {
 	return DesiredVelocity;
+}
+
+bool ADF_PlayerCharacter::IsJumping() const
+{
+	return bIsJumping;
+}
+
+bool ADF_PlayerCharacter::IsGrounded() const
+{
+	return GetCharacterMovement()->IsMovingOnGround();
 }
 
