@@ -12,3 +12,18 @@ ADF_DoorInteractableActor::ADF_DoorInteractableActor()
 	DoorMesh->SetupAttachment(DoorPivot);
 
 }
+
+void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("Door is: %hs"), bIsOpen ? "Open" : "Closed")
+
+	//on which side is the player
+	bool bIsInFront = false;
+	FVector DoorFwd = DoorMesh->GetForwardVector();
+	FVector OtherCharacterFwd = OtherActor->GetActorForwardVector();
+	float Dot = DoorFwd.Dot(OtherCharacterFwd);
+	bIsInFront = Dot < 0;
+	UE_LOG(LogTemp, Warning, TEXT("Door is: %hs"), bIsInFront ? "In Front" : "Behind")
+	bIsOpen = !bIsOpen;
+}

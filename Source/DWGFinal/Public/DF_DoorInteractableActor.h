@@ -20,4 +20,8 @@ class DWGFINAL_API ADF_DoorInteractableActor : public ADF_InteractableActor
 
 public:
 	ADF_DoorInteractableActor();
+
+protected:
+	virtual void Interact(AActor* OtherActor) override;
+	bool bIsOpen;
 };
