@@ -25,5 +25,15 @@ void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
 	float Dot = DoorFwd.Dot(OtherCharacterFwd);
 	bIsInFront = Dot < 0;
 	UE_LOG(LogTemp, Warning, TEXT("Door is: %hs"), bIsInFront ? "In Front" : "Behind")
+	
+	if (bIsOpen)
+	{
+		Close();
+	}
+	else
+	{
+		Open();
+	}
+
 	bIsOpen = !bIsOpen;
 }

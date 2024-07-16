@@ -21,6 +21,12 @@ class DWGFINAL_API ADF_DoorInteractableActor : public ADF_InteractableActor
 public:
 	ADF_DoorInteractableActor();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void Open();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void Close();
+
 protected:
 	virtual void Interact(AActor* OtherActor) override;
 	bool bIsOpen;
