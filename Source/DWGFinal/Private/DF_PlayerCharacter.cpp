@@ -7,6 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
+#include "MotionWarpingComponent.h"
 #include "DWGFinal/Public/DF_PlayerController.h"
 
 
@@ -20,6 +21,8 @@ ADF_PlayerCharacter::ADF_PlayerCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(Camera, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
+
+	MotionWarping = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
 }
 
 void ADF_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

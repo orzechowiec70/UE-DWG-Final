@@ -18,6 +18,24 @@ class DWGFINAL_API ADF_DoorInteractableActor : public ADF_InteractableActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> DoorMesh;
 
+	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UAnimMontage> OpenDoorFront;
+
+	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UAnimMontage> OpenDoorBehind;
+
+	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UAnimMontage> CloseDoorFront;
+
+	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UAnimMontage> CloseDoorBehind;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<USceneComponent> FrontEntryPoint;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<USceneComponent> BackEntryPoint;
+
 public:
 	ADF_DoorInteractableActor();
 
