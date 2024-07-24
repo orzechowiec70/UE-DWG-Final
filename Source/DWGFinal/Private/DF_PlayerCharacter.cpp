@@ -56,7 +56,7 @@ void ADF_PlayerCharacter::StopMoveInput(const FInputActionValue& InputValue)
 void ADF_PlayerCharacter::LookInput(const FInputActionValue& InputValue)
 {
 	const FVector2D InputVector = InputValue.Get<FVector2D>();
-	if (IsValid(Controller))
+	if (IsValid(Controller) && bCanLook)
 	{
 		AddControllerYawInput(InputVector.X);
 		AddControllerPitchInput(InputVector.Y);

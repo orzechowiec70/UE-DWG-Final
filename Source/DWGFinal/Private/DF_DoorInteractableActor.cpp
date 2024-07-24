@@ -12,7 +12,9 @@ ADF_DoorInteractableActor::ADF_DoorInteractableActor()
 	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>("Door Mesh");
 	DoorMesh->SetupAttachment(DoorPivot);
 	FrontEntryPoint = CreateDefaultSubobject<USceneComponent>("Front Entry Point");
+	FrontEntryPoint->SetupAttachment(RootComponent);
 	BackEntryPoint = CreateDefaultSubobject<USceneComponent>("Back Entry Point");
+	BackEntryPoint->SetupAttachment(RootComponent);
 }
 
 void ADF_DoorInteractableActor::Interact(AActor* OtherActor)

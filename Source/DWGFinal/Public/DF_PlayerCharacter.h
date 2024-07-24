@@ -11,7 +11,7 @@ class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
 class UAnimMontage;
-class UMotionWarpingComponent
+class UMotionWarpingComponent;
 
 /**
  * 
@@ -34,6 +34,9 @@ class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
 	TObjectPtr<UMotionWarpingComponent> MotionWarping;
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bCanLook = true;
+
 	ADF_PlayerCharacter();
 
 	void MoveCharacterWithInput(const FInputActionValue& InputValue);
