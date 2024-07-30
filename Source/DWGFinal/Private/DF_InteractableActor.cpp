@@ -1,5 +1,6 @@
 
 #include "DF_InteractableActor.h"
+#include "DF_PlayerCharacter.h"
 #include "Components/BoxComponent.h"
 
 ADF_InteractableActor::ADF_InteractableActor()
@@ -18,7 +19,35 @@ ADF_InteractableActor::ADF_InteractableActor()
 void ADF_InteractableActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+}
+
+void ADF_InteractableActor::Interact(AActor* OtherActor)
+{
+	CurrentInteractingActor = OtherActor;
+
+	PreInteract(OtherActor);
+
+	if (!ShouldWaitForAnimNotify())
+	{
+		Interact_Internal(OtherActor);
+	}
+	else
+	{
+		if (ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor); IsValid(Player))
+		{
+			Player->OnInteractNotify.AddDynamic(this, &ADF_InteractableActor::OnInteractNotify);
+		}
+	}
+}
+
+void ADF_InteractableActor::OnInteractNotify()
+{
+	Interact_Internal(CurrentInteractingActor.Get());
+
+	if (ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(CurrentInteractingActor); IsValid(Player))
+	{
+		Player->OnInteractNotify.RemoveAll(this);
+	}
 }
 
 void ADF_InteractableActor::Tick(float DeltaTime)

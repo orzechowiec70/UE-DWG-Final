@@ -13,6 +13,8 @@ class DWGFINAL_API ADF_InteractableActor : public AActor
 {
 	GENERATED_BODY()
 
+	TWeakObjectPtr<AActor> CurrentInteractingActor;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> Trigger;
@@ -27,7 +29,14 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	virtual void Interact(AActor* OtherActor) {}
+	void Interact(AActor* OtherActor);
+	virtual void Interact_Internal (AActor* OtherActor) {  }
+	virtual void PreInteract(AActor* OtherActor) {  }
+
+	virtual bool ShouldWaitForAnimNotify() const { return false; };
+
+	UFUNCTION()
+	void OnInteractNotify();
 
 public:	
 	// Called every frame

@@ -51,6 +51,10 @@ public:
 	void Close();
 
 protected:
-	virtual void Interact(AActor* OtherActor) override;
+	virtual void PreInteract (AActor* OtherActor) override;
+	virtual void Interact_Internal(AActor* OtherActor) override;
+
+	virtual bool ShouldWaitForAnimNotify() const override { return true; };
+
 	bool bIsOpen;
 };

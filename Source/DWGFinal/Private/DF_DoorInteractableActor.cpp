@@ -19,7 +19,7 @@ ADF_DoorInteractableActor::ADF_DoorInteractableActor()
 	BackEntryPoint->SetupAttachment(RootComponent);
 }
 
-void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
+void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 {
 	auto SkeletalMesh = OtherActor->GetComponentByClass<USkeletalMeshComponent>(); //auto bo widaæ jaki typ zwraca
 
@@ -45,12 +45,11 @@ void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
 	bIsInFront = Dot < 0;
 	UE_LOG(LogTemp, Warning, TEXT("Door is: %hs"), bIsInFront ? "In Front" : "Behind")
 
-
 	if (bIsOpen)
 	{
-		Close();
+	//	Close();
 	}
-	else
+	else 
 	{
 		if (IsValid(MotionWarping))
 		{
@@ -59,17 +58,18 @@ void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
 
 		UAnimMontage* Montage = OpenDoorFront.LoadSynchronous();
 		AnimInstance->Montage_Play(Montage);
+	}
+}
 
-		ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor);
-		if (IsValid(Player))
-		{
-			bCanBeOpened = Player->bCanOpen;
-		}
-
-		if (bCanBeOpened)
-		{
-			Open();
-		}
+void ADF_DoorInteractableActor::Interact_Internal(AActor* OtherActor)
+{
+	if (bIsOpen)
+	{
+		Close();
+	}
+	else
+	{
+		Open();
 	}
 
 	bIsOpen = !bIsOpen;

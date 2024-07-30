@@ -13,9 +13,9 @@ class UInputAction;
 class UAnimMontage;
 class UMotionWarpingComponent;
 
-/**
- * 
- */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractNotify);
+
+
 UCLASS()
 class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
 {
@@ -46,8 +46,12 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	FTransform RightHandIKTarget;
 
+	UPROPERTY()
+	FInteractNotify OnInteractNotify;
+
 	ADF_PlayerCharacter();
 
+	void InteractNotify();
 	void MoveCharacterWithInput(const FInputActionValue& InputValue);
 	void StopMoveInput(const FInputActionValue& InputValue);
 	void LookInput(const FInputActionValue& InputValue);
