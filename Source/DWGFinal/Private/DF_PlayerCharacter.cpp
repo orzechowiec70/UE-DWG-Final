@@ -66,21 +66,7 @@ void ADF_PlayerCharacter::LookInput(const FInputActionValue& InputValue)
 void ADF_PlayerCharacter::JumpInput()
 {
 	ACharacter::Jump();
-	//zalogowaæ velocity %s GetVelocity().ToString()
-
 	bIsJumping = true;
-
-
-	/*
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance && JumpMontage)
-	{
-		if (!AnimInstance->Montage_IsPlaying(JumpMontage))
-		{
-			AnimInstance->Montage_Play(JumpMontage);
-		}
-	}
-	*/
 }
 
 void ADF_PlayerCharacter::StopJumpInput()

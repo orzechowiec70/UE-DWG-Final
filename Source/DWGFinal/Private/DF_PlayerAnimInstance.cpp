@@ -18,5 +18,7 @@ void UDF_PlayerAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		CurrentVelocity = FMath::VInterpTo(CurrentVelocity, DesiredVelocity, DeltaSeconds, VelocityInterpSpeed);//Lerp
 		bIsJumping = OwningCharacter->IsJumping();
 		bIsGrounded = OwningCharacter->IsGrounded();
+		RightHandIKAlpha = OwningCharacter->RightHandIKAlpha;
+		RightHandIKTarget = OwningCharacter->RightHandIKTarget;
 	}
 }

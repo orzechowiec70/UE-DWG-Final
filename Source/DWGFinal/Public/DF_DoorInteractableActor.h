@@ -7,6 +7,8 @@
 #include "DF_DoorInteractableActor.generated.h"
 
 
+class ADF_PlayerCharacter;
+
 UCLASS()
 class DWGFINAL_API ADF_DoorInteractableActor : public ADF_InteractableActor
 {
@@ -35,6 +37,9 @@ class DWGFINAL_API ADF_DoorInteractableActor : public ADF_InteractableActor
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> BackEntryPoint;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	bool bCanBeOpened = true;
 
 public:
 	ADF_DoorInteractableActor();

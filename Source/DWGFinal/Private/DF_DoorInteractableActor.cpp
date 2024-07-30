@@ -2,7 +2,9 @@
 
 #include "DF_DoorInteractableActor.h"
 #include "MotionWarpingComponent.h"
+#include "DF_PlayerCharacter.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 ADF_DoorInteractableActor::ADF_DoorInteractableActor()
 	: ADF_InteractableActor()
@@ -20,6 +22,7 @@ ADF_DoorInteractableActor::ADF_DoorInteractableActor()
 void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
 {
 	auto SkeletalMesh = OtherActor->GetComponentByClass<USkeletalMeshComponent>(); //auto bo widaæ jaki typ zwraca
+
 	if (!IsValid(SkeletalMesh)) //early returny
 	{
 		return;
@@ -32,7 +35,6 @@ void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
 	}
 
 	auto MotionWarping = OtherActor->GetComponentByClass<UMotionWarpingComponent>();
-
 	UE_LOG(LogTemp, Warning, TEXT("Door is: %hs"), bIsOpen ? "Open" : "Closed")
 
 	//on which side is the player
@@ -57,7 +59,17 @@ void ADF_DoorInteractableActor::Interact(AActor* OtherActor)
 
 		UAnimMontage* Montage = OpenDoorFront.LoadSynchronous();
 		AnimInstance->Montage_Play(Montage);
-		Open();
+
+		ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor);
+		if (IsValid(Player))
+		{
+			bCanBeOpened = Player->bCanOpen;
+		}
+
+		if (bCanBeOpened)
+		{
+			Open();
+		}
 	}
 
 	bIsOpen = !bIsOpen;

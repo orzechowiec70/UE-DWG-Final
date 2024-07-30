@@ -37,6 +37,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool bCanLook = true;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bCanOpen = false;
+
+	UPROPERTY(VisibleAnywhere)
+	float RightHandIKAlpha = 0.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	FTransform RightHandIKTarget;
+
 	ADF_PlayerCharacter();
 
 	void MoveCharacterWithInput(const FInputActionValue& InputValue);

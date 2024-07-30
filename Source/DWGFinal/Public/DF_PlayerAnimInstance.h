@@ -32,6 +32,12 @@ class DWGFINAL_API UDF_PlayerAnimInstance : public UDF_AnimInstance
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	bool bIsGrounded = true;
 
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	float RightHandIKAlpha = 0.0f;
+
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	FTransform RightHandIKTarget;
+
 protected:
 	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
