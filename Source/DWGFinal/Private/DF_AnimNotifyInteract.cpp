@@ -2,6 +2,7 @@
 
 #include "DF_AnimNotifyInteract.h"
 #include "DF_PlayerCharacter.h"
+#include "DF_InteractingComponent.h"
 
 void UDF_AnimNotifyInteract::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
 {
@@ -9,9 +10,9 @@ void UDF_AnimNotifyInteract::Notify(USkeletalMeshComponent* MeshComp, UAnimSeque
 	{
 		if (AActor* OwnerActor = MeshComp->GetOwner(); IsValid(OwnerActor))
 		{
-			if (ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OwnerActor))
+			if (UDF_InteractingComponent* InteractingComp = OwnerActor->FindComponentByClass<UDF_InteractingComponent>())
 			{
-				Player->InteractNotify();
+				InteractingComp->InteractNotify();
 			}
 			else 
 			{

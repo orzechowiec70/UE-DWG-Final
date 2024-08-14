@@ -49,7 +49,7 @@ void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 	{
 	//	Close();
 	}
-	else 
+	else
 	{
 		if (IsValid(MotionWarping))
 		{
@@ -58,6 +58,19 @@ void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 
 		UAnimMontage* Montage = OpenDoorFront.LoadSynchronous();
 		AnimInstance->Montage_Play(Montage);
+
+		if (InteractingComp.IsValid())
+		{
+			AnimInstance->OnMontageEnded.AddDynamic(this, &ADF_DoorInteractableActor::OnMontageEnded);
+		}
+	}
+}
+
+void ADF_DoorInteractableActor::OnMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (InteractingComp.IsValid())
+	{
+		InteractingComp->bIsInteracting = false;
 	}
 }
 

@@ -56,5 +56,9 @@ protected:
 
 	virtual bool ShouldWaitForAnimNotify() const override { return true; };
 
+	UFUNCTION()
+	void OnMontageEnded(UAnimMontage* Montage, bool bInterrupted);
+	
+
 	bool bIsOpen;
 };

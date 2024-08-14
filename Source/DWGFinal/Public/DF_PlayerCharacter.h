@@ -12,7 +12,7 @@ class UInputMappingContext;
 class UInputAction;
 class UAnimMontage;
 class UMotionWarpingComponent;
-
+class UDF_InteractingComponent;
 
 UCLASS()
 class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
@@ -30,6 +30,9 @@ class DWGFINAL_API ADF_PlayerCharacter : public ADF_Character
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UMotionWarpingComponent> MotionWarping;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UDF_InteractingComponent> InteractingComp;
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

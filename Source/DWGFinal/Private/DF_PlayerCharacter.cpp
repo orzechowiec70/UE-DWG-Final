@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "MotionWarpingComponent.h"
+#include "DF_InteractingComponent.h"
 #include "DWGFinal/Public/DF_PlayerController.h"
 
 
@@ -23,6 +24,8 @@ ADF_PlayerCharacter::ADF_PlayerCharacter()
 	FollowCamera->bUsePawnControlRotation = false;
 
 	MotionWarping = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
+
+	InteractingComp = CreateDefaultSubobject<UDF_InteractingComponent>(TEXT("InteractingComponent"));
 }
 
 void ADF_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

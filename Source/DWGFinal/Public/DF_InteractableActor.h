@@ -16,15 +16,14 @@ class DWGFINAL_API ADF_InteractableActor : public AActor
 
 	TWeakObjectPtr<AActor> CurrentInteractingActor;
 
-	UPROPERTY(VisibleAnywhere)
-	UDF_InteractingComponent* InteractingComponent;
-
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> Trigger;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> Origin;
+
+	TWeakObjectPtr<UDF_InteractingComponent> InteractingComp;
 	
 public:	
 	// Sets default values for this actor's properties

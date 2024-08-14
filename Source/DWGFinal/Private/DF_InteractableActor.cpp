@@ -12,8 +12,6 @@ ADF_InteractableActor::ADF_InteractableActor()
 	Trigger = CreateDefaultSubobject<UBoxComponent>("Trigger");
 	Trigger->SetupAttachment(Origin);
 
-	InteractingComponent = CreateDefaultSubobject<UDF_InteractingComponent>("Interacting Component");
-
 	Trigger->OnComponentBeginOverlap.AddDynamic(this, &ADF_InteractableActor::OnOverlap);
 }
 
@@ -26,6 +24,18 @@ void ADF_InteractableActor::Interact(AActor* OtherActor)
 {
 	CurrentInteractingActor = OtherActor;
 
+	InteractingComp = OtherActor->FindComponentByClass<UDF_InteractingComponent>();
+
+	if (InteractingComp.IsValid())
+	{
+		if (InteractingComp->bIsInteracting)
+		{
+			return;
+		}
+
+		InteractingComp->bIsInteracting = true;
+	}
+
 	PreInteract(OtherActor);
 
 	if (!ShouldWaitForAnimNotify())
@@ -34,9 +44,9 @@ void ADF_InteractableActor::Interact(AActor* OtherActor)
 	}
 	else
 	{
-		if (UDF_InteracingComponent* InteractingComponent = OtherActor->FindComponentByClass<UDF_InteractingComponent>(); IsValid(InteractingComponent))
+		if (InteractingComp.IsValid())
 		{
-			InteractingComponent->OnInteractNotify.AddDynamic(this, &ADF_InteractableActor::OnInteractNotify);
+			InteractingComp->OnInteractNotify.AddDynamic(this, &ADF_InteractableActor::OnInteractNotify);
 		}
 	}
 }
@@ -45,7 +55,7 @@ void ADF_InteractableActor::OnInteractNotify()
 {
 	Interact_Internal(CurrentInteractingActor.Get());
 
-	if (UDF_InteracingComponent* InteractingComponent = CurrentInteractingActor->FindComponentByClass<UDF_InteractingComponent>(); IsValid(InteractingComponent))
+	if (UDF_InteractingComponent* InteractingComponent = CurrentInteractingActor->FindComponentByClass<UDF_InteractingComponent>(); IsValid(InteractingComponent))
 	{
 		InteractingComponent->OnInteractNotify.RemoveAll(this);
 	}
