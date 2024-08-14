@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "DF_InteractingComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractNotify);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class DWGFINAL_API UDF_InteractingComponent : public UActorComponent
@@ -15,6 +16,11 @@ class DWGFINAL_API UDF_InteractingComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UDF_InteractingComponent();
+
+	UPROPERTY()
+	FInteractNotify OnInteractNotify;
+
+	void InteractNotify();
 
 protected:
 	// Called when the game starts

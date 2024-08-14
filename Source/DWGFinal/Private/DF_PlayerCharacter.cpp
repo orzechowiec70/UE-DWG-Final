@@ -69,11 +69,6 @@ void ADF_PlayerCharacter::JumpInput()
 	bIsJumping = true;
 }
 
-void ADF_PlayerCharacter::InteractNotify()
-{
-	OnInteractNotify.Broadcast();
-}
-
 void ADF_PlayerCharacter::StopJumpInput()
 {
 	bIsJumping = false;

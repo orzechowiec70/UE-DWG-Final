@@ -14,6 +14,11 @@ UDF_InteractingComponent::UDF_InteractingComponent()
 }
 
 
+void UDF_InteractingComponent::InteractNotify()
+{
+	OnInteractNotify.Broadcast();
+}
+
 // Called when the game starts
 void UDF_InteractingComponent::BeginPlay()
 {

@@ -1,6 +1,6 @@
 
 #include "DF_InteractableActor.h"
-#include "DF_PlayerCharacter.h"
+#include "DF_InteractingComponent.h"
 #include "Components/BoxComponent.h"
 
 ADF_InteractableActor::ADF_InteractableActor()
@@ -33,7 +33,7 @@ void ADF_InteractableActor::Interact(AActor* OtherActor)
 	}
 	else
 	{
-		if (ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor); IsValid(Player))
+		if (Player = OtherActor->GetComponentByClass<UInteractingComponent>(); IsValid(Player))
 		{
 			Player->OnInteractNotify.AddDynamic(this, &ADF_InteractableActor::OnInteractNotify);
 		}
