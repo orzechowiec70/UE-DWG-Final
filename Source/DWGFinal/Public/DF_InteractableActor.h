@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "DF_InteractingComponent.h"
 #include "DF_InteractableActor.generated.h"
 
 class UBoxComponent;
@@ -14,6 +15,9 @@ class DWGFINAL_API ADF_InteractableActor : public AActor
 	GENERATED_BODY()
 
 	TWeakObjectPtr<AActor> CurrentInteractingActor;
+
+	UPROPERTY(VisibleAnywhere)
+	UDF_InteractingComponent* InteractingComponent;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
