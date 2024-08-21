@@ -17,6 +17,8 @@ ADF_DoorInteractableActor::ADF_DoorInteractableActor()
 	FrontEntryPoint->SetupAttachment(RootComponent);
 	BackEntryPoint = CreateDefaultSubobject<USceneComponent>("Back Entry Point");
 	BackEntryPoint->SetupAttachment(RootComponent);
+	IKTarget = CreateDefaultSubobject<USceneComponent>("IK Target");
+	IKTarget->SetupAttachment(DoorMesh);
 }
 
 void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
@@ -54,6 +56,12 @@ void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 		if (IsValid(MotionWarping))
 		{
 			MotionWarping->AddOrUpdateWarpTargetFromComponent(FName("Target"), bIsInFront ? FrontEntryPoint : BackEntryPoint, FName(), false);
+		}
+
+		ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor);
+		if (Player)
+		{
+			Player->RightHandIKTarget = IKTarget->GetComponentTransform();
 		}
 
 		UAnimMontage* Montage = OpenDoorFront.LoadSynchronous();

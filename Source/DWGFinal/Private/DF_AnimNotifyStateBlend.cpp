@@ -18,6 +18,7 @@ void UDF_AnimNotifyStateBlend::NotifyTick(USkeletalMeshComponent* MeshComp, UAni
 	}
 	else if (CurrentTime > TotalTime - BlendOut)
 	{
+		// TODO: Fix me
 		Alpha = (CurrentTime - (TotalTime - BlendOut)) / (TotalTime - BlendOut);
 	}
 	else
@@ -25,6 +26,8 @@ void UDF_AnimNotifyStateBlend::NotifyTick(USkeletalMeshComponent* MeshComp, UAni
 		Alpha = 1.0f;
 	}
 	CurrentTime += FrameDeltaTime;
+
+	UE_LOG(LogTemp, Warning, TEXT("Alpha: %f"), Alpha);
 }
 
 void UDF_AnimNotifyStateBlend::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
