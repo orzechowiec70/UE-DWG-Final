@@ -13,6 +13,9 @@ class DWGFINAL_API UDF_AnimNotifyStaterRestrictLook : public UAnimNotifyState
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere)
+	bool bAllowLook = false;
+
 	TWeakObjectPtr<ADF_PlayerCharacter> Player;
 
 public:

@@ -7,16 +7,26 @@ void UDF_AnimNotifyStaterRestrictLook::NotifyBegin(USkeletalMeshComponent* MeshC
 {
 	AActor* OwnerActor = MeshComp->GetOwner();
 	Player = Cast<ADF_PlayerCharacter>(OwnerActor);
-	if (Player.IsValid())
+	if (Player.IsValid() && IsValid(Player->Controller))
 	{
-		Player->bCanLook = false;
+		if (!bAllowLook)
+		{
+			Player->bCanLook = false;
+		}
+		Player->bUseControllerRotationYaw = false;
 	}
 }
 
 void UDF_AnimNotifyStaterRestrictLook::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
 {
-	if (Player.IsValid())
+	if (Player.IsValid() && IsValid(Player->Controller))
 	{
 		Player->bCanLook = true;
+		Player->bUseControllerRotationYaw = true;
+
+		FRotator TargetControlRotation = Player->Controller->GetControlRotation();
+		TargetControlRotation.Yaw = Player->GetActorRotation().Yaw;
+
+		Player->Controller->SetControlRotation(TargetControlRotation);
 	}
 }
