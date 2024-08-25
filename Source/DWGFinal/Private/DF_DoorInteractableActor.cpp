@@ -59,6 +59,7 @@ void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 		}
 
 		ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor);
+		// Dlaczego nie mogê ich przyrównaæ??
 		if (Player)
 		{
 			Player->RightHandIKTarget = IKTarget->GetComponentTransform();
@@ -79,6 +80,12 @@ void ADF_DoorInteractableActor::OnMontageEnded(UAnimMontage* Montage, bool bInte
 	if (InteractingComp.IsValid())
 	{
 		InteractingComp->bIsInteracting = false;
+	}
+
+	// Nie wiem co z tym, skoro Playera castujê wy¿ej, a nawet jak zcastujê tutaj to tam jest referencja do OtherActora
+	if (Player)
+	{
+		Player->RightHandIKTarget = nullptr;
 	}
 }
 

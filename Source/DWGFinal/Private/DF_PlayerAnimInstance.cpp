@@ -19,6 +19,11 @@ void UDF_PlayerAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		bIsJumping = OwningCharacter->IsJumping();
 		bIsGrounded = OwningCharacter->IsGrounded();
 		RightHandIKAlpha = OwningCharacter->RightHandIKAlpha;
-		RightHandIKTarget = OwningCharacter->RightHandIKTarget;
+
+		if (IsValid(OwningCharacter->RightHandIKTarget) && RightHandIKAlpha > UE_SMALL_NUMBER)
+		{
+			RightHandIKTarget = OwningCharacter->RightHandIKTarget->GetComponentTransform();
+		}
+		
 	}
 }

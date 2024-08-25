@@ -45,7 +45,7 @@ public:
 	float RightHandIKAlpha = 0.0f;
 
 	UPROPERTY(VisibleAnywhere)
-	FTransform RightHandIKTarget;
+	TObjectPtr<USceneComponent> RightHandIKTarget;
 
 	ADF_PlayerCharacter();
 
