@@ -63,5 +63,7 @@ protected:
 	void OnMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 	
 
+	TWeakObjectPtr<ADF_PlayerCharacter> InteractingPlayer;
+
 	bool bIsOpen;
 };
