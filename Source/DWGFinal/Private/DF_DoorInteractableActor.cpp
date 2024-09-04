@@ -58,11 +58,11 @@ void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 			MotionWarping->AddOrUpdateWarpTargetFromComponent(FName("Target"), bIsInFront ? FrontEntryPoint : BackEntryPoint, FName(), false);
 		}
 
-		ADF_PlayerCharacter* Player = Cast<ADF_PlayerCharacter>(OtherActor);
+		InteractingPlayer = Cast<ADF_PlayerCharacter>(OtherActor);
 		// Dlaczego nie mogê ich przyrównaæ??
-		if (Player)
+		if (InteractingPlayer.IsValid())
 		{
-			Player->RightHandIKTarget = IKTarget;
+			InteractingPlayer->RightHandIKTarget = IKTarget;
 		}
 
 		UAnimMontage* Montage = OpenDoorFront.LoadSynchronous();
@@ -80,6 +80,11 @@ void ADF_DoorInteractableActor::OnMontageEnded(UAnimMontage* Montage, bool bInte
 	if (InteractingComp.IsValid())
 	{
 		InteractingComp->bIsInteracting = false;
+	}
+
+	if (InteractingPlayer.IsValid())
+	{
+		InteractingPlayer->RightHandIKTarget = nullptr;
 	}
 }
 
