@@ -12,13 +12,17 @@ UCLASS()
 class DWGFINAL_API ADF_AIController : public AAIController
 {
 	GENERATED_BODY()
-
+	
 	UPROPERTY()
 	TObjectPtr<UBehaviorTreeComponent> BehaviorTreeComponent;
 
 	UPROPERTY()
 	TObjectPtr<UBlackboardComponent> BlackboardComponent;
 
+	UPROPERTY(EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UBehaviorTree> BT; 
+
 public:
 	ADF_AIController();
+	virtual void OnPossess(APawn* InPawn) override;
 };

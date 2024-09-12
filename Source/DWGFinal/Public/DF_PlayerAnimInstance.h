@@ -18,9 +18,6 @@ class DWGFINAL_API UDF_PlayerAnimInstance : public UDF_AnimInstance
 	FVector DesiredVelocity;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	FVector CurrentVelocity;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<ADF_PlayerCharacter> OwningCharacter;
 
 	UPROPERTY(EditDefaultsOnly)

@@ -3,18 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animation/AnimInstance.h"
-#include "DF_AnimInstance.generated.h"
+#include "DF_AnimInstance.h"
+#include "DF_NPCAnimInstance.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class DWGFINAL_API UDF_AnimInstance : public UAnimInstance
+class DWGFINAL_API UDF_NPCAnimInstance : public UDF_AnimInstance
 {
 	GENERATED_BODY()
 
-protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	FVector CurrentVelocity;
+	float CurrentSpeedSq;
+	
+	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 };
