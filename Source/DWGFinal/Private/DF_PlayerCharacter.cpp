@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "DF_PlayerCharacter.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
@@ -75,6 +72,23 @@ void ADF_PlayerCharacter::JumpInput()
 void ADF_PlayerCharacter::StopJumpInput()
 {
 	bIsJumping = false;
+}
+
+void ADF_PlayerCharacter::RunningInput()
+{
+	if (bIsRunning == false)
+	{
+		bIsRunning = true;
+	}
+	else
+	{
+		bIsRunning = false;
+	}
+
+	if (bIsRunning)
+	{
+		DesiredVelocity = DesiredVelocity * 2;
+	}
 }
 
 FVector ADF_PlayerCharacter::GetDesiredVelocity()

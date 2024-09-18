@@ -54,6 +54,7 @@ public:
 	void LookInput(const FInputActionValue& InputValue);
 	void JumpInput();
 	void StopJumpInput();
+	void RunningInput();
 	FVector GetDesiredVelocity();
 	bool IsJumping() const;
 	bool IsGrounded() const;
@@ -62,4 +63,5 @@ public:
 
 private:
 	bool bIsJumping = false;
+	bool bIsRunning = false;
 };

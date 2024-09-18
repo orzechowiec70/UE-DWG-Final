@@ -31,6 +31,9 @@ class DWGFINAL_API ADF_PlayerController : public APlayerController
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UInputAction> JumpAction;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputAction> RunningAction;
+
 public:
 	void BindInput(UEnhancedInputComponent* InputComp, ADF_PlayerCharacter* TestCharacter);
 };
