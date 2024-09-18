@@ -15,6 +15,7 @@ void UDF_PlayerAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	if (IsValid(OwningCharacter))
 	{
 		DesiredVelocity = OwningCharacter->GetDesiredVelocity();
+
 		CurrentVelocity = FMath::VInterpTo(CurrentVelocity, DesiredVelocity, DeltaSeconds, VelocityInterpSpeed);//Lerp
 		bIsJumping = OwningCharacter->IsJumping();
 		bIsGrounded = OwningCharacter->IsGrounded();

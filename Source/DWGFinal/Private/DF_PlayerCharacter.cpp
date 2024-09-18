@@ -76,24 +76,12 @@ void ADF_PlayerCharacter::StopJumpInput()
 
 void ADF_PlayerCharacter::RunningInput()
 {
-	if (bIsRunning == false)
-	{
-		bIsRunning = true;
-	}
-	else
-	{
-		bIsRunning = false;
-	}
-
-	if (bIsRunning)
-	{
-		DesiredVelocity = DesiredVelocity * 2;
-	}
+	bIsRunning = !bIsRunning;
 }
 
 FVector ADF_PlayerCharacter::GetDesiredVelocity()
 {
-	return DesiredVelocity;
+	return bIsRunning ? DesiredVelocity * 2 : DesiredVelocity;
 }
 
 bool ADF_PlayerCharacter::IsJumping() const

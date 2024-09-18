@@ -16,7 +16,7 @@ void ADF_PlayerController::BindInput(UEnhancedInputComponent* InputComp, ADF_Pla
 	InputComp->BindAction(LookAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::LookInput);
 	InputComp->BindAction(JumpAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::JumpInput);
 	InputComp->BindAction(JumpAction, ETriggerEvent::Completed, TestCharacter, &ADF_PlayerCharacter::StopJumpInput);
-	InputComp->BindAction(RunningAction, ETriggerEvent::Triggered, TestCharacter, &ADF_PlayerCharacter::RunningInput);
+	InputComp->BindAction(RunningAction, ETriggerEvent::Started, TestCharacter, &ADF_PlayerCharacter::RunningInput);
 
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
