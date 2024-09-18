@@ -2,7 +2,8 @@
 
 
 #include "BTTaskNode_CalculateRandomPoint.h"
-
+#include "NavigationSystem.h"
+#include "DF_AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
 EBTNodeResult::Type UBTTaskNode_CalculateRandomPoint::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
@@ -11,7 +12,13 @@ EBTNodeResult::Type UBTTaskNode_CalculateRandomPoint::ExecuteTask(UBehaviorTreeC
 
 	// 2. zapisz FVector random pointa w blackboardzie
 
-	OwnerComp.GetBlackboardComponent()->SetValueAsVector("Destination", FVector());
+	AiCurrentLocation = OwnerComp.GetAIOwner()->GetPawn()->GetActorLocation();
+	UNavigationSystemV1* NavArea = FNavigationSystem::GetCurrent<UNavigationSystemV1>(this);
+	if (IsValid(NavArea))
+	{
+		bRandomLocationFound = NavArea->GetRandomReachablePointInRadius(AiCurrentLocation, SearchRadius, RandomTargetLocation);
+		OwnerComp.GetBlackboardComponent()->SetValueAsVector("Destination", RandomTargetLocation);
+	}
 	
 	return EBTNodeResult::Succeeded;
 }
