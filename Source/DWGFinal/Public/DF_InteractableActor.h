@@ -36,6 +36,9 @@ protected:
 	virtual void Interact_Internal (AActor* OtherActor) {  }
 	virtual void PreInteract(AActor* OtherActor) {  }
 
+	UFUNCTION(BlueprintCallable)
+	void StopInteracting();
+
 	virtual bool ShouldWaitForAnimNotify() const { return false; };
 
 	UFUNCTION()

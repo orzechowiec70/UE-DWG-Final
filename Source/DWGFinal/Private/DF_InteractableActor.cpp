@@ -51,6 +51,14 @@ void ADF_InteractableActor::Interact(AActor* OtherActor)
 	}
 }
 
+void ADF_InteractableActor::StopInteracting()
+{
+	if (InteractingComp.IsValid())
+	{
+		InteractingComp->bIsInteracting = false;
+	}
+}
+
 void ADF_InteractableActor::OnInteractNotify()
 {
 	Interact_Internal(CurrentInteractingActor.Get());

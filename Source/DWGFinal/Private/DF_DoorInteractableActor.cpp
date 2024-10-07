@@ -49,7 +49,7 @@ void ADF_DoorInteractableActor::PreInteract(AActor* OtherActor)
 
 	if (bIsOpen)
 	{
-	//	Close();
+		StopInteracting();
 	}
 	else
 	{
